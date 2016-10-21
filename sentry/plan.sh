@@ -7,7 +7,7 @@ pkg_maintainer="George Marshall <gmarshall@mediatemple.net>"
 pkg_license=('BSD-3-Clause')
 pkg_source=nosuchfile.tgz
 pkg_deps=(
-    # Missing deps
+    # Missing Pillow deps
     # *** OPENJPEG (JPEG2000) support not available
     # *** LITTLECMS2 support not available
     core/freetype/2.6.3/20160729201535
@@ -56,7 +56,7 @@ do_install() {
     ${pkg_prefix}/bin/pip install --no-index \
         --find-links="$HAB_CACHE_SRC_PATH/wheelhouse" \
         "sentry==$pkg_version"
-       # Write out versions of all pip packages to package
+   # Write out versions of all pip packages to package
     ${pkg_prefix}/bin/pip freeze > "$pkg_prefix/requirements.txt"
 }
 
