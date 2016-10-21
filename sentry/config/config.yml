@@ -1,0 +1,47 @@
+# While a lot of configuration in Sentry can be changed via the UI, for all
+# new-style config (as of 8.0) you can also declare values here in this file
+# to enforce defaults or to ensure they cannot be changed via the UI. For more
+# information see the Sentry documentation.
+
+###############
+# Mail Server #
+###############
+{{~#with cfg.mail}}
+mail.backend: '{{backend}}'  # Use dummy if you want to disable email entirely
+{{#if host}}mail.host: '{{host}}'{{/if}}
+{{#if port}}mail.port: {{port}}{{/if}}
+{{#if username}}mail.username: '{{username}}'{{/if}}
+{{#if password}}mail.password: '{{password}}'{{/if}}
+{{#if use-tls}}mail.use-tls: {{use-tls}}{{/if}}
+# The email address to send on behalf of
+{{#if from}}mail.from: '{{from}}'{{/if}}
+
+# If you'd like to configure email replies, enable this.
+{{#if enable-replies}}mail.enable-replies: {{enable-replies}}{{/if}}
+
+# When email-replies are enabled, this value is used in the Reply-To header
+{{#if reply-hostname}}mail.reply-hostname: '{{reply-hostname}}'{{/if}}
+
+# If you're using mailgun for inbound mail, set your API key and configure a
+# route to forward to /api/hooks/mailgun/inbound/
+{{#if mailgun-api-key}}mail.mailgun-api-key: '{{mailgun-api-key}}'{{/if}}
+{{~/with}}
+
+###################
+# System Settings #
+###################
+
+# If this file ever becomes compromised, it's important to regenerate your a new key
+# Changing this value will result in all current sessions being invalidated.
+# A new key can be generated with `$ sentry config generate-secret-key`
+system.secret-key: '{{cfg.secret-key}}'
+
+# The ``redis.clusters`` setting is used, unsurprisingly, to configure Redis
+# clusters. These clusters can be then referred to by name when configuring
+# backends such as the cache, digests, or TSDB backend.
+redis.clusters:
+  default:
+    hosts:
+      0:
+        host: 127.0.0.1
+        port: 6379

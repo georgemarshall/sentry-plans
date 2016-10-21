@@ -1,0 +1,6 @@
+#!/bin/sh
+exec 2>&1
+
+export SENTRY_CONF={{pkg.svc_config_path}}
+
+exec snetry run web

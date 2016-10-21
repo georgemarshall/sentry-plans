@@ -1,0 +1,34 @@
+debug = false
+single-org = true
+secret-key = ''
+
+[database]
+host = 'postgres'
+port = ''
+name = 'sentry'
+user = 'postgres'
+password = ''
+
+[mail]
+backend = 'smtp' # Use dummy if you want to disable email entirely
+host = 'email'
+port = ''
+username = ''
+password = ''
+use-tls = false
+# The email address to send on behalf of
+from = 'root@localhost'
+
+# If you'd like to configure email replies, enable this.
+enable-replies = false
+
+# When email-replies are enabled, this value is used in the Reply-To header
+reply-hostname = ''
+
+# If you're using mailgun for inbound mail, set your API key and configure a
+# route to forward to /api/hooks/mailgun/inbound/
+mailgun-api-key = ''
+
+[[redis]]
+host = 'redis'
+port = 6379
