@@ -10,15 +10,15 @@ pkg_deps=(
     # Missing Pillow deps
     # *** OPENJPEG (JPEG2000) support not available
     # *** LITTLECMS2 support not available
-    core/freetype/2.6.3/20160729201535
+    core/freetype
     core/libffi
     core/libjpeg-turbo
     core/libtiff
     core/libwebp
-    core/openssl/1.0.2j/20160926152543
+    core/openssl
     core/postgresql
     core/python2
-    core/zlib/1.2.8/20160612064520
+    core/zlib
 )
 pkg_build_deps=(
     core/gcc
