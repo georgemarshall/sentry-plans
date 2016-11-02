@@ -3,4 +3,4 @@ exec 2>&1
 
 export SENTRY_CONF={{pkg.svc_config_path}}
 
-exec snetry run web
+exec sentry run web

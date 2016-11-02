@@ -1,6 +1,7 @@
 # This file is just Python, with a touch of Django which means
 # you can inherit and tweak settings to your hearts content.
 from sentry.conf.server import *
+from sentry.utils.types import Bool
 
 import os.path
 
@@ -32,10 +33,8 @@ SENTRY_USE_BIG_INTS = True
 
 # Instruct Sentry that this install intends to be run by a single organization
 # and thus various UI optimizations should be enabled.
-{{#with cfg}}
-SENTRY_SINGLE_ORGANIZATION = {{#if single-org}}True{{else}}False{{/if}}
-DEBUG = {{#if debug}True{{else}}False{{/if}}
-{{/with}}
+SENTRY_SINGLE_ORGANIZATION = Bool('{{cfg.single-org}}')
+DEBUG = Bool('{{cfg.debug}}')
 
 #########
 # Cache #
@@ -114,18 +113,6 @@ SENTRY_TSDB = 'sentry.tsdb.redis.RedisTSDB'
 # The digest backend powers notification summaries.
 
 SENTRY_DIGESTS = 'sentry.digests.backends.redis.RedisBackend'
-
-################
-# File storage #
-################
-
-# Any Django storage backend is compatible with Sentry. For more solutions see
-# the django-storages package: https://django-storages.readthedocs.io/en/latest/
-
-SENTRY_FILESTORE = 'django.core.files.storage.FileSystemStorage'
-SENTRY_FILESTORE_OPTIONS = {
-    'location': '/tmp/sentry-files',
-}
 
 ##############
 # Web Server #
